@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List Application With JS</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12" style="margin-bottom: 10px">
+                <input onkeyup="search()" id="searchInput" type="text" class="form-control todo-list-input" placeholder="find todo.....">
+            </div>
+            <div class="col-lg-4">
+                <div class="card px-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Doing Tasks(You have <strong id="count-doing-task"></strong> doing task!)</h4>
+                        <div class="add-items d-flex">
+                            <input id="taskInput" type="text" class="form-control todo-list-input" placeholder="What do you need to do today?">
+                            <button class="add btn btn-primary font-weight-bold todo-list-add-btn"  onclick="newTask()">Add</button>
+                        </div>
+                        <div class="list-wrapper">
+                            <ul class="d-flex flex-column-reverse todo-list" id="parent-task-item">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card px-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Done Tasks(You have <strong id="count-done-task"></strong> done task!)</h4>
+                        <div class="list-wrapper">
+                            <ul class="d-flex flex-column-reverse todo-list" id="done-tasks">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card px-3">
+                    <div class="card-body">
+                        <h4 class="card-title">Deleted Tasks(You have <strong id="count-delete-task"></strong> deleted task!)</h4>
+                        <div class="list-wrapper">
+                            <ul class="d-flex flex-column-reverse todo-list" id="deleted-tasks">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/Helpers.js"></script>
+<script src="js/Dom.js"></script>
+<script src="js/ls.js"></script>
+<script src="js/Todo.js"></script>
+<script src="js/main.js"></script>
+<script>
+    // initial application
+    Todo.init();
+
+    let taskInput=new Dom('#taskInput');
+    let searchInout=new Dom('#searchInput');
+    const parent_task_item=new Dom('#parent-task-item');
+    const deleted_tasks=new Dom('#deleted-tasks');
+    const done_tasks=new Dom('#done-tasks');
+    const count_done_task=new Dom('#count-done-task');
+    const count_doing_task=new Dom('#count-doing-task');
+    const count_deleted_task=new Dom('#count-delete-task');
+
+    const renderItem=()=>{
+        renderTask();
+        renderDoneTask();
+        renderDeletedTask();
+    };
+    taskInput.changeVal('');
+    renderItem();
+</script>
+</html>
